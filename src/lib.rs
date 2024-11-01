@@ -9,8 +9,17 @@ use engage::gamedata::item::ItemData;
 #[unity::hook("App", "Unit", "ClassChange")]
 pub fn unit_classchange(this: &Unit, job: &JobData, item: &ItemData, _method_info : u64)
 {
+    let mut previous_level = this.fields.level;
+    if this.fields.level > 20 {
+        previous_level = this.fields.level - 20
+    }
+
     println!("running my class change");
-    call_original!(this, job, item, _method_info)
+    call_original!(this, job, item, _method_info);
+
+    if item.fields.kind == 10 && item.fields.usetype == 24 {
+        this.set_level(previous_level.into());
+    }
 }
 
 
