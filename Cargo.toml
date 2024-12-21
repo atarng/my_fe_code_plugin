@@ -12,8 +12,10 @@ crate-type = ["cdylib"]
 
 [dependencies]
 skyline = { git = "https://github.com/ultimate-research/skyline-rs" }
-engage = { git = "https://github.com/DivineDragonFanClub/engage" }
+#engage = { git = "https://github.com/DivineDragonFanClub/engage" }
+engage = { git = "https://github.com/atarng/engage", branch = "ring_investigation" }
 unity = { git = "https://github.com/DivineDragonFanClub/unity" }
+cobapi = { git = "https://github.com/DivineDragonFanClub/cobapi" }
 
 [profile.dev]
 panic = "abort"

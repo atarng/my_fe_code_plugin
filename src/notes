@@ -1,0 +1,95 @@
+// This will probably not work, dumbdumb.
+// use engage::gamedata::UnitSelectRingMenu;
+// #[derive(Default, Serialize, Deserialize)]
+// pub struct 
+// #[unity::class]
+// UnitSelectRingMenu {}
+// #[unity::class("App", "UnitSelectRingMenu")]
+// pub struct UnitSelectRingMenu {
+//     base: &'static BasicMenu, // I call it base but you can call it super if you want, it doesn't matter
+//     close_event_handler: *const u8
+// }
+// #[unity::hook("App", "UnitSelectRingMenu", "TakeOffRing")]
+// 7101c61630 -> 0x??????
+// #[skyline::from_offset()
+// pub fn unit_debug_ring_clear(this: &UnitSelectRingMenu, unit: &Unit, _method_info : u64)
+// {
+//     println!("clear ring from unit");
+//     call_original!(this, unit, _method_info);
+// }
+
+// void App.UnitSelectRingMenu$$EntrustRing(App_UnitSelectRingMenu_o *__this,MethodInfo *method)
+// {
+
+// App.Unit$$TryConnectGodUnit(App_Unit_o *__this,App_GodUnit_o *godUnit,MethodInfo *method)
+// App_GodUnit_o * App.Unit$$TryDisconnectGodUnit(App_Unit_o *__this,MethodInfo *method)
+// App_UnitRing_o * App.Unit$$TryDisconnectRing(App_Unit_o *__this,MethodInfo *method)
+
+// void App.Unit$$SetGodUnit(App_Unit_o *__this,App_GodUnit_o *godUnit,MethodInfo *method)
+// {
+//   App_UnitActor_o *__this_00;
+//   App_GodUnit_o *extraout_x1;
+//   App_GodUnit_o *pAVar1;
+//   MethodInfo *method_00;
+//   MethodInfo *in_x3;
+  
+//   pAVar1 = godUnit;
+//   if ((DAT_710631468b & 1) == 0) {
+//     thunk_FUN_710043f8a4(&App.MapHistory_TypeInfo);
+//     DAT_710631468b = 1;
+//     pAVar1 = extraout_x1;
+//   }
+//   if ((__this->fields).m_GodUnit != godUnit) {
+//     if (((*(byte *)((long)&App.MapHistory_TypeInfo[0x13].data + 3) >> 1 & 1) != 0) &&
+//        (*(int *)&App.MapHistory_TypeInfo[0xe].data == 0)) {
+//       thunk_FUN_71004367d8(App.MapHistory_TypeInfo,pAVar1);
+//     }
+//     App.MapHistory$$GodConnect(__this,(MethodInfo *)0x0);
+//     App.Unit$$TryConnectGodUnit(__this,godUnit,method);
+//     method_00 = (MethodInfo *)0x0;
+//     App.Unit$$UpdateStateImpl(__this,false,(App_UnitItem_o *)0x0,in_x3);
+//     __this_00 = (__this->fields).m_Actor;
+//     if (__this_00 != (App_UnitActor_o *)0x0) {
+//       method_00 = (MethodInfo *)0x0;
+//       App.UnitActor$$Reload(__this_00,(MethodInfo *)0x0);
+//     }
+//     App.Unit$$ResetEngageCount(__this,method_00);
+//     return;
+//   }
+//   return;
+// }
+
+// void App.UnitReliance$$LevelUp
+//                (App_PersonData_o *personA,App_PersonData_o *personB,MethodInfo *method)
+
+// {
+//   ulong uVar1;
+//   int level;
+//   MethodInfo *method_00;
+//   Il2CppMethodPointer local_18;
+  
+//   if ((DAT_7106315267 & 1) == 0) {
+//     thunk_FUN_710043f8a4(&Method$App.EachDictionary<int,-UnitRelianceData>.TryGetValue());
+//     thunk_FUN_710043f8a4(&App.UnitReliance_TypeInfo);
+//     DAT_7106315267 = 1;
+//   }
+//   local_18 = (Il2CppMethodPointer)0x0;
+//   if ((personA != (App_PersonData_o *)0x0) && (personB != (App_PersonData_o *)0x0)) {
+//     method_00 = (MethodInfo *)&stack0xffffffffffffffe8;
+//     uVar1 = App.EachDictionary<>$$TryGetValue
+//                       (*(undefined8 *)(*(long *)(App.UnitReliance_TypeInfo + 0xb8) + 8),
+//                        (personA->fields).super.super.super.Hash,
+//                        (personB->fields).super.super.super.Hash,method_00,
+//                        Method$App.EachDictionary<int,-UnitRelianceData>.TryGetValue());
+//     if ((local_18 != (Il2CppMethodPointer)0x0) && ((uVar1 & 1) != 0)) {
+//       level = *(int *)(local_18 + 0x18);
+//       if (level < 3) {
+//         level = level + 1;
+//         *(int *)(local_18 + 0x18) = level;
+//         local_18[0x1c] = (Il2CppMethodPointer)((char)local_18[0x1c] + '\x01');
+//       }
+//       App.UnitReliance$$LinkGodUnitLevelUp(personA,personB,level,method_00);
+//     }
+//   }
+//   return;
+// }
