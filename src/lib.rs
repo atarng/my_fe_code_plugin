@@ -10,9 +10,11 @@ use engage::gamedata::item::ItemData;
 pub fn unit_classchange(this: &Unit, job: &JobData, item: &ItemData, _method_info : u64)
 {
     let mut level_to_set_to = this.fields.level;
+    let preserve_internal_level = this.fields.internal_level;
     if this.fields.level > 20 {
         level_to_set_to = this.fields.level - 20
     }
+
     else if this.get_job().get_max_level() == 20 && this.fields.level == 20 {
         if this.get_job().is_high() {
             level_to_set_to = 1
@@ -27,6 +29,7 @@ pub fn unit_classchange(this: &Unit, job: &JobData, item: &ItemData, _method_inf
 
     if item.fields.kind == 10 && item.fields.usetype == 24 {
         this.set_level(level_to_set_to.into());
+        this.set_internal_level(preserve_internal_level.into())
     }
 }
 
