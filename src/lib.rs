@@ -7,7 +7,7 @@ use engage::gamedata::JobData;
 use engage::gamedata::item::ItemData;
 
 #[unity::hook("App", "Unit", "ClassChange")]
-pub fn unit_classchange(this: &Unit, job: &JobData, item: &ItemData, _method_info : u64)
+pub fn unit_classchange(this: &Unit, job: &JobData, item: Option<&ItemData>, _method_info : u64)
 {
     let mut level_to_set_to = this.fields.level;
     let preserve_internal_level = this.fields.internal_level;
@@ -27,9 +27,11 @@ pub fn unit_classchange(this: &Unit, job: &JobData, item: &ItemData, _method_inf
     println!("running my class change");
     call_original!(this, job, item, _method_info);
 
-    if item.fields.kind == 10 && item.fields.usetype == 24 {
-        this.set_level(level_to_set_to.into());
-        this.set_internal_level(preserve_internal_level.into())
+    if let Some(item_unwrapped) = item {
+        if item_unwrapped.fields.kind == 10 && item_unwrapped.fields.usetype == 24 {
+            this.set_level(level_to_set_to.into());
+            this.set_internal_level(preserve_internal_level.into())
+        }
     }
 }
 
