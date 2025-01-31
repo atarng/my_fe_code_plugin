@@ -1,10 +1,15 @@
 #![feature(lazy_cell, ptr_sub_ptr)]
 
-use skyline::install_hook;
-use engage::gamedata::unit::Unit;
-use engage::gamedata::JobData;
+use skyline::{
+    install_hook,
+    patching::Patch,
+};
 
-use engage::gamedata::item::ItemData;
+use engage::gamedata::{
+    unit::Unit,
+    JobData,
+    item::ItemData,
+};
 
 #[unity::hook("App", "Unit", "ClassChange")]
 pub fn unit_classchange(this: &Unit, job: &JobData, item: Option<&ItemData>, _method_info : u64)
@@ -40,4 +45,7 @@ pub fn unit_classchange(this: &Unit, job: &JobData, item: Option<&ItemData>, _me
 pub fn main() {
     println!("loading my_code_plugin");
     install_hook!(unit_classchange);
+
+    // Allows reclass on CC is what I change to make it allow learning on class change
+    Patch::in_text(0x01BE9508).bytes([0x04, 0x00, 0x00, 0x14]).unwrap();
 }
